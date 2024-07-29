@@ -1,4 +1,4 @@
-import ButtonAuth from "@/components/ButtonAuth";
+import ButtonAuth from "../components/ButtonAuth";
 
 export default function Home() {
   return (
