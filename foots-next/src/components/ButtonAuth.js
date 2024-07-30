@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 
-export default function ButtonAuth() { 
+export default function ButtonAuth(props) { 
 
     const [approved, setApproved] = useState("");
 
@@ -11,8 +11,8 @@ export default function ButtonAuth() {
         setApproved("Approvato"); //change "approved" varibale status to "Approved" string
 
         setTimeout(()=> {
-            window.location.href = "/autenticazione" //find the href in the DOM and change the value
-        }, 2000 //set timer sto redirect
+            window.location.href = props.url //find the href in the DOM and change the value
+        }, 1000 //set timer to redirect
         )
         
     }
@@ -22,7 +22,7 @@ export default function ButtonAuth() {
             <button onClick={handelClick} 
                     className="btn sm:btn-sm bg-primary text-white border-none rounded-lg">
                 <Link href="">
-                    Login
+                    {props.text}
                 </Link>
             </button>
         </>
