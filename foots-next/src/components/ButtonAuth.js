@@ -7,7 +7,7 @@ export default function ButtonAuth(props) {
 
     const [approved, setApproved] = useState("");
 
-    function handelClick() {
+    function handleClick() {
         setApproved("Approvato"); //change "approved" varibale status to "Approved" string
 
         setTimeout(()=> {
@@ -17,15 +17,19 @@ export default function ButtonAuth(props) {
         
     }
     return(
-        <>
-            <p> {approved} </p>
-            <button onClick={handelClick} 
-                    className="btn sm:btn-sm bg-primary text-white border-none rounded-lg">
-                <Link href="">
+        <div className="flex flex-col items-center">
+            <p className="h-6 mb-2"> {approved} </p>
+            <button 
+                onClick={handleClick} 
+                className="w-48 h-12 bg-primary text-white border-none rounded-lg flex items-center justify-center hover:bg-primary-dark transition duration-300"
+            >
+                <Link href={props.url} 
+                className="w-full h-full flex items-center justify-center"
+                >
                     {props.text}
                 </Link>
             </button>
-        </>
+        </div>
     )
 }
 
