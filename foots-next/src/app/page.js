@@ -1,5 +1,5 @@
 import WordsGenerator from "@/utils/generateWords";
-import ButtonAuth from "../components/ButtonAuth";
+import Button from "../components/Button";
 
 export default function Home() {
 
@@ -13,8 +13,8 @@ export default function Home() {
             <div className="flex flex-col justify-center items-center h-full">
               <h1 className="font-bold text-2xl"> Inizia </h1>
                 <div className="flex flex-row space-x-4 justify-center items-center">
-                  <ButtonAuth url="/login" text="Login" />
-                  <ButtonAuth url="/signUp" text="Sign Up" />
+                  <Button url="/login" text="Login" />
+                  <Button url="/signUp" text="Sign Up" />
                 </div>
               <div className="w-4/12 text-center space-y-2 absolute bottom-0 mb-10">
                 <p> logo</p>
