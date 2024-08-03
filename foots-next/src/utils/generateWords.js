@@ -5,17 +5,17 @@ import { useState, useEffect } from 'react';
 export default function WordsGenerator() {
   const [currentWord, setCurrentWord] = useState("");
 
-
   useEffect(() => {
-    const words = ["ciao", "Alberto"];
+  const words = ["ciao", "Alberto"];
     let index = 0;
 
-     const intervalId = setInterval(() => {
-            setCurrentWord(words[index]);
-            index = (index + 1) % words.length;
-            }, 1000);
-        
+    setCurrentWord(words[0])
 
+    const intervalId = setInterval(() => {
+        setCurrentWord(words[index]);
+        index = (index + 1) % words.length;
+        }, 1000);
+    
     return () => clearInterval(intervalId);
   }, []);
 
