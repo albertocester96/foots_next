@@ -5,16 +5,16 @@ export default function Home() {
 
   return (
         <main className="h-screen flex flex-col md:flex-row">
-          <div className="flex w-full md:w-3/5 h-1/2 md:h-full relative bg-slate-600 items-center p-5">
-            <WordsGenerator />
+          <div className="flex w-full md:w-3/5 h-1/2 md:h-full relative bg-slate-600 items-center p-10">
+            <WordsGenerator array={["Ciao", "Benvenuto in Foots", "Entra nella community del calcetto"]} />
           </div>
           
           <div className="w-full md:w-2/5 h-screen">
             <div className="flex flex-col justify-center items-center h-full">
               <h1 className="font-bold text-2xl"> Inizia </h1>
                 <div className="flex flex-row space-x-4 justify-center items-center">
-                  <ButtonAuth url="/login" text="Login"/>
-                  <ButtonAuth url="/signUp" text="Sign Up"/>
+                  <ButtonAuth url="/login" text="Login" />
+                  <ButtonAuth url="/signUp" text="Sign Up" />
                 </div>
               <div className="w-4/12 text-center space-y-2 absolute bottom-0 mb-10">
                 <p> logo</p>
