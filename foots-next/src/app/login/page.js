@@ -1,9 +1,9 @@
-import AuthForm from "@/components/SignUpForm";
+import LoginForm from "@/components/LoginForm";
 
-export default function LoginFunction() {
+export default function Login() {
     return (
         <div>
-            <AuthForm authenticationType="Ti diamo di nuovo il benvenuto"/>
+            <LoginForm authenticationType="Ti diamo di nuovo il benvenuto"/>
         </div>
         );
 }

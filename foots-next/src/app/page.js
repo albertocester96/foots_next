@@ -12,7 +12,7 @@ export default function Home() {
           <div className="w-full md:w-2/5 h-screen">
             <div className="flex flex-col justify-center items-center h-full">
               <h1 className="font-bold text-2xl"> Inizia </h1>
-                <div className="flex flex-row space-x-4 justify-center items-center">
+                <div className="flex flex-col md:flex-row md:space-x-4 justify-center items-center">
                   <Button url="/login" text="Login" />
                   <Button url="/signUp" text="Sign Up" />
                 </div>
