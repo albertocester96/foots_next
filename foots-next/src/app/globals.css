@@ -3,3 +3,6 @@
 @tailwind utilities;
 
 
+.input-border{
+    @apply border-2;
+}
