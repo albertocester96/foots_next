@@ -66,7 +66,7 @@ export default function SignUpForm(props) {
             <p className="mt-10"> Logo </p>
         </header>
         <main className="flex-grow flex justify-center items-center">
-            <section className="flex flex-col w-full items-center justify-center md:max-w-sm max-w-xs space-y-4 pb-14">
+            <section className="flex flex-col w-full items-center justify-center md:max-w-sm max-w-xs space-y-4 pb-48">
                 
                 <h1 className="font-bold text-3xl mb-10 text-center w-full"> {props.authenticationType} </h1>
                 <label className="w-full input input-bordered focus-within:input-primary flex items-center gap-2">
@@ -103,6 +103,12 @@ export default function SignUpForm(props) {
                             Sign Up
                         </Link>
                     </button>
+                </div>
+                <div className="flex justify-center text-sm">
+                    <p className="mr-2"> Hai già un account? </p>
+                    <a href="/login" className="text-primary"> 
+                            Accedi
+                    </a>
                 </div>
                 
             </section>

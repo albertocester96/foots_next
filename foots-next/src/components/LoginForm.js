@@ -14,6 +14,7 @@ export default function LoginForm(props) {
 
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
+    const [credentialError, setCredentialError] = useState(false)
 
     const handleClick = async (e) => {
 
@@ -45,8 +46,11 @@ export default function LoginForm(props) {
                     case 'auth/missing-password':
                         setPasswordError(true)
                         break;
+                    case 'auth/invalid-credential':
+                        setCredentialError(true)
+                        break;
                     default:
-                    alert("Invalid credential");
+                        setCredentialError(true)
                 }
             } 
             console.error(e)
@@ -83,7 +87,11 @@ export default function LoginForm(props) {
                 </div>
                 <div className={passwordError ? "visible text-xs items-center alert alert-error": "hidden"}>
                     <img  className="size-5" src="/assets/error-icon.svg" />
-                    Password non valida.
+                    Password non valida o mancante.
+                </div>
+                <div className={credentialError ? "visible text-xs items-center alert alert-error": "hidden"}>
+                    <img  className="size-5" src="/assets/error-icon.svg" />
+                    Credenziali non valide o inesisenti.
                 </div>
                 
                 <div className="flex w-full justify-center items-center py-5">
@@ -96,6 +104,13 @@ export default function LoginForm(props) {
                         </Link>
                     </button>
                 </div>
+                <div className="flex justify-center text-sm">
+                    <p className="mr-2"> Non hai un account? </p>
+                    <a href="/signUp" className="text-primary"> 
+                            Registrati
+                    </a>
+                </div>
+                
                 
             </section>
         </main>
