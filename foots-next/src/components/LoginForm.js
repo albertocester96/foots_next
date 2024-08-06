@@ -2,19 +2,23 @@
 
 import Link from "next/link"
 import { auth } from "@/lib/firebase/AppFirebase"
-import { signInWithEmailAndPassword} from "firebase/auth"
+import { signInWithEmailAndPassword, signOut} from "firebase/auth"
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
+import Loading from "@/utils/loading";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm(props) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [checkedUrl, setCheckedUrl] = useState("")
+    const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
-    const [emailError, setEmailError] = useState(false)
-    const [passwordError, setPasswordError] = useState(false)
-    const [credentialError, setCredentialError] = useState(false)
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [credentialError, setCredentialError] = useState(false);
+    const [emailNotVerified, setEmailNotVerified] = useState(false)
 
     const handleClick = async (e) => {
 
@@ -25,14 +29,15 @@ export default function LoginForm(props) {
         try {
                 await signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) =>  {
-                    const userVerified = userCredential.user.emailVerified
+                    const userVerified = userCredential.user.emailVerified;
+                    setLoading(false);
 
                     if (userVerified) {
-                        setCheckedUrl("/homepage")
+                        router.push("/homepage")
+                    } else {
+                        setEmailNotVerified(true)
                     }
-
                 })
-            
         } 
         catch (e) {
             if (e instanceof FirebaseError) {
@@ -55,6 +60,10 @@ export default function LoginForm(props) {
             } 
             console.error(e)
         }
+
+        if (loading) {
+            return <Loading />
+          }
     }
 
        
@@ -93,15 +102,17 @@ export default function LoginForm(props) {
                     <img  className="size-5" src="/assets/error-icon.svg" />
                     Credenziali non valide o inesisenti.
                 </div>
+                <div className={emailNotVerified ? "visible text-xs items-center alert alert-error": "hidden"}>
+                    <img  className="size-5" src="/assets/error-icon.svg" />
+                    Email non verificata. Per favore, verifica la tua email prima di accedere.
+                </div>
                 
                 <div className="flex w-full justify-center items-center py-5">
                     <button
                         onClick={handleClick}
-                        className={"text-white border-none rounded-lg flex w-full items-center justify-center transition duration-300 bg-primary hover:bg-primary-dark"}
+                        className={"text-white border-none rounded-lg flex w-full items-center justify-center transition duration-300 bg-primary hover:bg-primary-dark p-3"}
                     >
-                        <Link href={checkedUrl} className="p-3" >
                             Login
-                        </Link>
                     </button>
                 </div>
                 <div className="flex justify-center text-sm">
