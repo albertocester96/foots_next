@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { auth } from "@/lib/firebase/AppFirebase"
-import { signInWithCredential} from "firebase/auth"
+import { signInWithEmailAndPassword} from "firebase/auth"
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 
@@ -10,10 +10,10 @@ export default function LoginForm(props) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [checkedUrl, setCheckedUrl] = useState("")
 
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
-
 
     const handleClick = async (e) => {
 
@@ -22,13 +22,15 @@ export default function LoginForm(props) {
         setPasswordError(false)
             
         try {
-                
-                const userCredential = await signInWithCredential(auth, email, password)
-                console.log(userCredential)    
-                setEmail("")
-                setPassword("")
-                alert("user find")
-            
+                await signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) =>  {
+                    const userVerified = userCredential.user.emailVerified
+
+                    if (userVerified) {
+                        setCheckedUrl("/homepage")
+                    }
+
+                })
             
         } 
         catch (e) {
@@ -50,6 +52,8 @@ export default function LoginForm(props) {
             console.error(e)
         }
     }
+
+       
 
     return(
         
@@ -87,7 +91,7 @@ export default function LoginForm(props) {
                         onClick={handleClick}
                         className={"text-white border-none rounded-lg flex w-full items-center justify-center transition duration-300 bg-primary hover:bg-primary-dark"}
                     >
-                        <Link href={"/homepage"} className="p-3" >
+                        <Link href={checkedUrl} className="p-3" >
                             Login
                         </Link>
                     </button>
